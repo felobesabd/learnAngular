@@ -1,0 +1,15 @@
+<div class="card" style="width: 30%;">
+  <img [src]="prodList?.imgUrl" class="card-img-top" alt="">
+  <div class="card-body">
+    <h5 class="card-title">{{prodList?.name}}</h5>
+    <div>
+      <div>Price: {{prodList?.price | currency: 'USD'}}</div>
+      <div>Quantity: {{prodList?.quantity}}</div>
+    </div>
+  </div>
+  <div class="btn-group" role="group" aria-label="Basic example">
+    <button [disabled]="prodId == arrId[0]" type="button" class="btn btn-secondary" (click)="goPrev()">Previous</button>
+    <button type="button" class="btn btn-primary" (click)="goBack()">Go Back</button>
+    <button [disabled]="prodId == arrId[arrId.length -1]"  type="button" class="btn btn-success" (click)="goNext()">Next</button>
+  </div>
+</div>

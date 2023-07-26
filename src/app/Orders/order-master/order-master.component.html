@@ -1,0 +1,15 @@
+<div class="mb-3">
+  <label for="cat" class="form-label">Category</label>
+  <select class="form-select form-select-lg" name="category" id="cate" [(ngModel)]="selectedCatID">
+    <option value="0" selected>All</option>
+    <option *ngFor="let cate of cateList" [value]="cate.id">{{cate.name}}</option>
+  </select>
+</div>
+<div class="bg-info">
+  <app-product [catIDSelected]="selectedCatID" (totalPriceChange)="prices($event)"></app-product>
+</div>
+<div>
+  <h3>Enter Your Name</h3>
+  <input #clientNameInp type="text" class="form-control" placeholder="Enter Your Name">
+</div>
+<h3>Total Price:-  {{totalPrices | currency: 'USD'}}</h3>

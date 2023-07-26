@@ -1,0 +1,13 @@
+<!-- <img src="{{storeInfo.imgUrl}}" alt="img-home"> -->
+<div class="p-1">
+  <img *ngIf="imageToggle" [src]="storeInfo.imgUrl" alt="img-home">
+  <button type="button" class="btn btn-primary" (click)="toggleFunc()"
+  style="padding: 10px 20px; margin-left: 10px;">toggle</button>
+  <h1>{{storeInfo.name}}</h1>
+
+  <h3>Our Branches</h3>
+  <ul>
+    <li *ngFor="let item of storeInfo.branches">{{item}}</li>
+  </ul>
+</div>
+

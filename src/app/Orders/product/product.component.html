@@ -1,0 +1,56 @@
+<!-- <div class="mb-3">
+  <label for="cat" class="form-label">Category</label>
+  <select class="form-select form-select-lg" name="category" id="cate" [(ngModel)]="selectedCatID" (change)="filterFn()">
+    <option *ngFor="let cate of cateList" [value]="cate.id">{{cate.name}}</option>
+  </select>
+</div> -->
+<!-- <div>
+  [to be removed] for test:
+  {{selectedCatID}}; <br/>
+  <button type="button" class="btn btn-primary" (click)="backDefault()">Back Default</button>
+  <br/>
+  Order Date: {{orderDate | date: 'mediumDate'}};
+</div> -->
+<a name="" id="" class="btn btn-primary mt-2" [routerLink]="['/Product/add']" role="button">Add Product</a>
+<hr/>
+<table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Num</th>
+      <th scope="col">Name</th>
+      <th scope="col">Price USD</th>
+      <th scope="col">Price EGP</th>
+      <th scope="col">Image</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Input</th>
+      <th scope="col">Button</th>
+      <th scope="col">Details</th>
+    </tr>
+  </thead>
+  <tbody style="cursor: pointer;">
+    <!-- [class.d-none]="selectedCatID != prod.cateID" -->
+    <tr *ngFor="let prod of filterPrdCat; let i = index; trackBy:trackByFn"
+    [style.color]="(prod.quantity == 200) ? 'blue' : 'gray'">
+      <th scope="row">{{i+1}}</th>
+      <td>{{prod.name}}</td>
+      <td>{{prod.price | currency: 'USD'}}</td>
+      <td>{{prod.price | USDToEGP: 30 | currency: "EGP"}}</td>
+      <td><img LightBox="green" highLight="yellow" defualtColor="white" src="{{prod.imgUrl}}" alt=""></td>
+      <td>
+        <!-- <div *ngIf="prod.quantity!= 200; else outofstock">{{prod.quantity}}</div>
+        <ng-template #outofstock>Out Of Stock</ng-template> -->
+        <div [ngSwitch]="prod.quantity">
+          <div *ngSwitchCase="700">Out Of Stock</div>
+          <div *ngSwitchCase="100">last 100 items</div>
+          <div *ngSwitchCase="200">last 200 items</div>
+          <div *ngSwitchDefault>{{prod.quantity}}</div>
+        </div>
+      </td>
+      <td><input type="number" class="form-control" #itemCount></td>
+      <td><button type="button" class="btn btn-info" (click)="buy(prod.price, itemCount.value)">Button</button></td>
+      <td><button type="button" class="btn btn-info" (click)="productDetails(prod.id)">Details</button></td>
+      <!-- <a name="" id="" class="btn btn-primary" [routerLink]="['/Products', prod.id]" role="button">Details</a> -->
+    </tr>
+  </tbody>
+</table>
+<!-- <h3>Total Price:-  {{totalPrices}} EGP</h3> -->
